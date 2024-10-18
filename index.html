@@ -18,6 +18,11 @@
   </style>
   <script>
     function toggle(id){
+      function hide(element){
+        element.style.display = "none";
+      }
+
+      document.querySelectorAll(".sida").forEach(hide);
       if(document.getElementById(id).style.display == ""){
         document.getElementById(id).style.display = "none";
       } else {
@@ -25,6 +30,44 @@
       }
     }
 
+    function setnow(){
+      var datum = new Date;
+      document.getElementById('year').value = datum.getFullYear();
+      add('year', 0);
+    }
+
+    function add(id, value){
+      document.getElementById(id).value = Number(document.getElementById(id).value) + value;
+      var year = Number(document.getElementById(id).value);
+
+      document.getElementById("who").innerHTML = "Styrelsesuppleanter(avgående): "+
+      schema(year-2)+"<br>"+
+        "Styrelseledamöter: "+schema(year-1)+"<br>"+
+        "Styrelseledamöter: "+schema(year)+"<br>"+
+        "Styrelsesuppleanter(nya): "+schema(year+1);
+    }
+
+    function schema(year){
+      var start = 2022;
+      var order = [
+        "23B, 5A",
+        "9B, 29B",
+        "5B, 29A",
+        "27B, 7A",
+        "25A, 3A",
+        "7B, 9A",
+        "3B, 23A",
+        "25B, 27A"
+        ];
+      var yeardiff = year - start;
+      while (yeardiff < 0) {
+        yeardiff = yeardiff + order.length;
+      }
+      while (yeardiff > 7) {
+        yeardiff = yeardiff - order.length;
+      }
+      return order[yeardiff];
+    }
   </script>
 </head>
 
@@ -36,11 +79,23 @@
           <div class="btn-group">
             <a href="Stadgar.pdf" class="btn btn-outline-secondary">Stadgar</a>
             <button type="button" onclick="toggle('ny')" class="btn btn-outline-secondary">Ny medlem</button>
+            <button type="button" onclick="toggle('schema');setnow()" class="btn btn-outline-secondary">Styrelse</button>
             <a href="mailto:brfgrimsberg@gmail.com" class="btn btn-outline-secondary">Kontakt</a>
           </div>
       </div>
     </div>
-    <div class="row align-items-start" id="ny" style="display: none;">
+    <div class="row align-items-start sida" id="schema" style="display: none;">
+      <div class="col">
+        <h3 class="text-center">Styrelse rullande schema</h3>
+        <div class="input-group mb-3">
+          <button class="btn btn-outline-secondary" type="button" onclick="add('year',-1)">-</button>
+          <input type="text" class="form-control" value="2024" id="year" disabled="true">
+          <button class="btn btn-outline-secondary" type="button" onclick="add('year',1)">+</button>
+        </div>
+        <div id="who"></div>
+      </div>
+    </div>
+    <div class="row align-items-start sida" id="ny" style="display: none;">
       <div class="col">
         <h3 class="text-center">Välkommen</h3>
         <p>
@@ -56,7 +111,7 @@
             <li>El-abbonemang ingår inte i avgiften utan måste teckans av respektive medlem.</li>
             <li>Bredband ingår inte i avgiften, Telia öppen fiber finns i alla bostäderna.</li>
             <li>Som medlem ansvarar du för vissa delar av underhållet, exakt vad hittar du i dokumentet <a href="Underhållansvar.pdf"> Underhållansvar</a>.</li>
-            <li>Som medlem i Brf Grimsberg kommer du att vara medlem i styrelsen enligt ett rullande schema.</li>
+            <li>Som medlem i Brf Grimsberg kommer du att vara medlem i styrelsen enligt ett rullande <a href="javascript:toggle('schema');setnow()">schema</a>.</li>
         </ul>
       </div>
     </div>
