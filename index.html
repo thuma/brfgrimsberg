@@ -16,25 +16,50 @@
           display: block;
         }
   </style>
+  <script>
+    function toggle(id){
+      if(document.getElementById(id).style.display == ""){
+        document.getElementById(id).style.display = "none";
+      } else {
+        document.getElementById(id).style.display = "";
+      }
+    }
+
+  </script>
 </head>
 
 <body>
   <img class="logo" src="brfgrimsberglogo.svg">
-  <div class="container text-center">
-    <div class="row align-items-start">
-      <div class="col">
-      </div>
+  <div class="container">
+    <div class="row align-items-start text-center">
       <div class="col">
           <div class="btn-group">
-      <a href="Stadgar.pdf" class="btn btn-outline-secondary">Stadgar</a>
-      <a href="mailto:brfgrimsberg@gmail.com" class="btn btn-outline-secondary">Kontakt</a>
-    </div>
+            <a href="Stadgar.pdf" class="btn btn-outline-secondary">Stadgar</a>
+            <button type="button" onclick="toggle('ny')" class="btn btn-outline-secondary">Ny medlem</button>
+            <a href="mailto:brfgrimsberg@gmail.com" class="btn btn-outline-secondary">Kontakt</a>
+          </div>
       </div>
+    </div>
+    <div class="row align-items-start" id="ny" style="display: none;">
       <div class="col">
+        <h3 class="text-center">Välkommen</h3>
+        <p>
+          Som medlem i föreningen kommer du att få tillgång till föreningens filarkiv, om du inte fått det ännu kontakta styrelsen.
+          Nedan följer några punkter att ha koll på:
+        </p>
+        <ul>
+            <li>Föreningen annordnar bland annat somarfest och glöggmingel, där du kan lära känna dina grannar.</li>
+            <li>Sophantering ingår i avgiften.</li>
+            <li>Återvinning som plast, papper, karton, glas, m.m. lämnas på valfri återvinningsstation eller återvinningscentral.</li>
+            <li>Kallvatten ingår i avgiften.</li>
+            <li>Du ansvara för att uppdatera namnen på postlådan när du flyttar in.</li>
+            <li>El-abbonemang ingår inte i avgiften utan måste teckans av respektive medlem.</li>
+            <li>Bredband ingår inte i avgiften, Telia öppen fiber finns i alla bostäderna.</li>
+            <li>Som medlem ansvarar du för vissa delar av underhållet, exakt vad hittar du i dokumentet <a href="Underhållansvar.pdf"> Underhållansvar</a>.</li>
+            <li>Som medlem i Brf Grimsberg kommer du att vara medlem i styrelsen enligt ett rullande schema.</li>
+        </ul>
       </div>
     </div>
   </div>
-
 </body>
-
 </html>
