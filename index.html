@@ -40,11 +40,10 @@
       document.getElementById(id).value = Number(document.getElementById(id).value) + value;
       var year = Number(document.getElementById(id).value);
 
-      document.getElementById("who").innerHTML = "Styrelsesuppleanter(avgående): "+
-      schema(year-2)+"<br>"+
-        "Styrelseledamöter: "+schema(year-1)+"<br>"+
-        "Styrelseledamöter: "+schema(year)+"<br>"+
-        "Styrelsesuppleanter(nya): "+schema(year+1);
+      document.getElementById("who").innerHTML =  "Styrelsesuppleanter(nya): "+schema(year+1)+"<br>"+
+        "Styrelseledamöter: "+schema(year-1)+", "+schema(year)+"<br>"+
+        "Styrelsesuppleanter(avgående): "+schema(year-2)+"<br>"+
+        "Valberedning: "+schema(year-3);
     }
 
     function schema(year){
@@ -86,8 +85,8 @@
     </div>
     <div class="row align-items-start sida" id="schema" style="display: none;">
       <div class="col">
-        <h3 class="text-center">Styrelse rullande schema</h3>
-        <div class="input-group mb-3">
+        <h3 class="text-center">Följande väljs på årsstämman i maj/juni angivet år:</h3>
+            <div class="input-group mb-3">
           <button class="btn btn-outline-secondary" type="button" onclick="add('year',-1)">-</button>
           <input type="text" class="form-control" value="2024" id="year" disabled="true">
           <button class="btn btn-outline-secondary" type="button" onclick="add('year',1)">+</button>
