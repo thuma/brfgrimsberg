@@ -37,12 +37,18 @@
     }
 
     function add(id, value){
-      document.getElementById(id).value = Number(document.getElementById(id).value) + value;
+      var newyear = Number(document.getElementById(id).value) + value;
+      if (newyear < 2025){
+        newyear = 2025;
+      }
+      document.getElementById(id).value = newyear;
       var year = Number(document.getElementById(id).value);
 
-      document.getElementById("who").innerHTML =  "Styrelsesuppleanter(nya): "+schema(year+1)+"<br>"+
-        "Styrelseledamöter: "+schema(year-1)+", "+schema(year)+"<br>"+
-        "Styrelsesuppleanter(avgående): "+schema(year-2)+"<br>"+
+      document.getElementById("who").innerHTML =  "På årsstämman "+year+" kommer följande att väljs:<br>"+
+        "Styrelsesuppleanter(nya): "+schema(year+1)+"<br>"+
+        "Styrelseledamöter på 2 år: "+schema(year)+"<br>"+
+        "Styrelseledamöter på 1 år: "+schema(year-1)+"<br>"+
+        "Styrelsesuppleanter(tidgiare styrelseledamöter): "+schema(year-2)+"<br>"+
         "Valberedning: "+schema(year-3);
     }
 
